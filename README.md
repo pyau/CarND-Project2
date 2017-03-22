@@ -54,9 +54,11 @@ signs data set:
 The code for this step is contained in the third and fourth code cells of the IPython notebook.  
 
 Here is an exploratory visualization of the data set. It is a bar chart showing how many examples are in each category.
+
 ![alt text][img_freq]
 
 This is a random sampling of some of the training data.
+
 ![alt text][img_ex]
 
 ###Design and Test a Model Architecture
@@ -66,9 +68,11 @@ This is a random sampling of some of the training data.
 The code for this step is contained in the fifth code cell of the IPython notebook.
 
 As a first step, I apply a bilateral filter to image. I find bilateral filter being better at preserving edges and keep the image sharp.
+
 ![alt text][img_bilateral]
 
 Then I greyscaled the image. I tried running both grayscaled and colored images through my neural network, and grayscale performs slightly better.
+
 ![alt text][img_grey]
 
 As a last step, I normalized the image data to avoid very large values or very small values during calculation of lost function.
@@ -145,6 +149,7 @@ These images were originally very large. To fit into the neural network, I have 
 The code for making predictions on my final model is located in the tenth cell of the Ipython notebook.
 
 Here are the results of the prediction:
+
 ![alt text][image_internet_ans] 
 
 
