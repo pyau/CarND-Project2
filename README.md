@@ -24,6 +24,14 @@ The goals / steps of this project are the following:
 [img_grey]: ./img/signs_grey2.png "Grey scaled images"
 [image_internet]: ./img/internet_signs.png "Signs from internet"
 [image_internet_ans]: ./img/internet_signs_ans.png "Signs from internet ans"
+[softmax_1]: ./img/softmax_1.png "Softmax1"
+[softmax_2]: ./img/softmax_2.png "Softmax2"
+[softmax_3]: ./img/softmax_3.png "Softmax3"
+[softmax_4]: ./img/softmax_4.png "Softmax4"
+[softmax_5]: ./img/softmax_5.png "Softmax5"
+[softmax_6]: ./img/softmax_6.png "Softmax6"
+[softmax_7]: ./img/softmax_7.png "Softmax7"
+[softmax_8]: ./img/softmax_8.png "Softmax8"
 
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -75,7 +83,7 @@ Then I greyscaled the image. I tried running both grayscaled and colored images 
 
 ![alt text][img_grey]
 
-As a last step, I normalized the image data to avoid very large values or very small values during calculation of lost function.
+Then I apply histrogram normalization to the greyscale image to increase contrast.  As a last step, I normalized the image data to avoid very large values or very small values during calculation of lost function.
 
 ####2. Describe how, and identify where in your code, you set up training, validation and testing data. How much data was in each set? Explain what techniques were used to split the data into these sets. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, identify where in your code, and provide example images of the additional data)
 
@@ -156,16 +164,16 @@ Here are the results of the prediction:
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Wild animals crossing | Wild animals crossing 						| 
-| Pedestrain   			| Road narrows on the right						|
+| Pedestrain   			| Right of way at next intersection      		|
 | Double Curve			| Double Curve									|
-| 20 km/h	      		| 30 km/h					     				|
-| Slippery Road			| Dangerous curve to the left					|
+| 20 km/h	      		| 20 km/h					     				|
+| Slippery Road			| Slippery Road					|
 | General caution       | General caution                               |
 | Bicycles crossing     | Bicycles crossing                             |
 | Traffic signals       | Traffic signals                               |
 
 
-The model was able to correctly guess 5 of the 8 traffic signs, which gives an accuracy of 62.5%. This compares unfavorably to the accuracy on the test set of 92.2%.  I believe data augmentation would be the key to train for a better accuracy percentage.
+The model was able to correctly guess 5 of the 8 traffic signs, which gives an accuracy of 87.5%. This compares unfavorably to the accuracy on the test set of 92.2%.  I believe data augmentation would be the key to train for a better accuracy percentage.
 
 ####3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction and identify where in your code softmax probabilities were outputted. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
@@ -173,81 +181,40 @@ The code for making predictions on my final model is located in the 11th cell of
 
 For the first image, the model is wild animals crossing and is correct.
 
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| 1.0         			| 31 Wild animals crossing  					| 
-| .00     				| 2 50km/h 										|
-| .00					| 29 Bicycle crossing							|
-| .00	      			| 10 No passing for vehicles over 3.5 metric tons|
-| .00				    | 23 Slippery Road      						|
+![alt text][softmax_1] 
 
 
-For the second image, the model predicts road narrows on the right, while the correct answer is pedestrians (second highest probability).
+For the second image, the model predicts Right-of-way at the next intersection, while the correct answer is pedestrians.
 
-| Probability           |     Prediction                                | 
-|:---------------------:|:---------------------------------------------:| 
-| .88                   | 24 Road narrows on the right                  | 
-| .08                   | 27 Pedestrians                                |
-| .03                   | 28 Children crossing                          |
-| .00                   | 11 Right-of-way at the next intersection      |
-| .00                   | 30 Beware of ice/snow                         |
+![alt text][softmax_2] 
+
 
 For the third image, the model predicts double curve correctly. 
 
-| Probability           |     Prediction                                | 
-|:---------------------:|:---------------------------------------------:| 
-| .53                   | 21 Double curve                               | 
-| .47                   | 25 Road work                                  |
-| .00                   | 31 Wild animals crossing                      |
-| .00                   | 30 Beware of ice/snow                         |
-| .00                   | 23 Slippery Road                              |
+![alt text][softmax_3] 
 
-For the fourth image, the model predicts the signs as 30km/h, while the correct result is 20km/h.
 
-| Probability           |     Prediction                                | 
-|:---------------------:|:---------------------------------------------:| 
-| .78                   | 1 30km/h                                      | 
-| .17                   | 18 General caution                            |
-| .02                   | 0 20km/h                                      |
-| .00                   | 4 70km/h                                      |
-| .00                   | 39 Keep right                                 |
+For the fourth image, the model predicts the signs as 20km/h correctly.
 
-For the fifth image the model predicts dangerous curve to the left with not much confidence, while the correct answer is slippery road, which has a close probability to the answer.
+![alt text][softmax_4] 
 
-| Probability           |     Prediction                                | 
-|:---------------------:|:---------------------------------------------:| 
-| .33                   | 19 Dangerous curve to the left                | 
-| .30                   | 30 Beware of ice/snow                         |
-| .27                   | 23 Slippery                                   |
-| .06                   | 24 Road narrows on the right                  |
-| .01                   | 28 Children crossing                          |
+
+For the fifth image the model predicts the correct answer is slippery road correctly.
+
+![alt text][softmax_5] 
+
 
 For the sixth image, the model predicts general caution correctly. 
 
-| Probability           |     Prediction                                | 
-|:---------------------:|:---------------------------------------------:| 
-| 1.0                   | 18 General caution                            | 
-| .00                   | 27 Pedestrians                                |
-| .00                   | 26 Traffic signals                            |
-| .00                   | 39 Keep left                                  |
-| .00                   | 37 Go straight or left                        |
+![alt text][softmax_6] 
+
 
 For the seventh image, the model predicts bicycles crossing correctly. 
 
-| Probability           |     Prediction                                | 
-|:---------------------:|:---------------------------------------------:| 
-| .77                   | 29 Bicycles crossing                          | 
-| .23                   | 25 Road work                                  |
-| .00                   | 19 Dangerous curve to the left                |
-| .00                   | 22 Bumpy Road                                 |
-| .00                   | 24 Road narrows on the right                  |
+![alt text][softmax_7] 
+
 
 For the eighth image, the model predicts traffic signal correctly.
 
-| Probability           |     Prediction                                | 
-|:---------------------:|:---------------------------------------------:| 
-| .99                   | 26 Traffic signal                             | 
-| .00                   | 18 General caution                            |
-| .00                   | 22 Bumpy road                                 |
-| .00                   | 24 Road narrows on the right                  |
-| .00                   | 39 Keep left                                  |
+![alt text][softmax_8] 
+
